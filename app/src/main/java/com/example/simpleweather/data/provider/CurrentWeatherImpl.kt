@@ -7,12 +7,12 @@ import android.content.Context
 import android.widget.Toast
 import com.example.simpleweather.R
 import com.example.simpleweather.data.db.CurrentWeatherResponse
-import com.example.simpleweather.data.network.BASE_URL
 import com.example.simpleweather.data.network.ConnectivityInterceptor
 import com.example.simpleweather.data.network.OpenWeatherApiService
 import com.example.simpleweather.data.network.ProvideHttpOkClientImpl
 import com.example.simpleweather.data.provider.location.GooglePlayServicesAvailable
 import com.example.simpleweather.data.provider.location.LocationProviderImpl
+import com.example.simpleweather.internal.Constants
 import com.example.simpleweather.internal.NoConnectivityException
 import com.example.simpleweather.ui.fragments.WeatherViewModel
 import io.reactivex.Observable
@@ -118,7 +118,7 @@ class CurrentWeatherImpl(
         operator fun invoke(connectivityInterceptor: ConnectivityInterceptor): OpenWeatherApiService {
             return Retrofit.Builder()
                 .client(ProvideHttpOkClientImpl(connectivityInterceptor).getSafeOkHttpClient())
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
