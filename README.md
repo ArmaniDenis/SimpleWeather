@@ -1,2 +1,2 @@
 # SimpleWeather
-Dont work on virtual devices with not logging into google services
+Dont work without lastknow location :C
