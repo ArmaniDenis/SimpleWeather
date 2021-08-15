@@ -44,7 +44,6 @@ class WeatherFragment : Fragment() {
             adapter.clearWeatherAttr()
             GlideApp.with(this)
                 .load("https://openweathermap.org/img/w/${it.weatherResponse?.single()?.icon}.png")
-
                 .override(150, 150)
                 .into(binding.weatherIcon)
             binding.apply {

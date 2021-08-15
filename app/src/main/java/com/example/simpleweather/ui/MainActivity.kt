@@ -42,10 +42,7 @@ class MainActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
 
         googlePlayServicesAvailable = GooglePlayServicesAvailable(this)
-
-
         weatherModel._weather.observe(this, {
-
             actionBar?.title = it.name
             supportActionBar?.title = it.name
         })

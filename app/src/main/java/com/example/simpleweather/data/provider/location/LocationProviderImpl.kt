@@ -3,7 +3,7 @@ package com.example.simpleweather.data.provider.location
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.location.Location
-import android.widget.Toast
+import android.util.Log
 import com.google.android.gms.location.*
 import io.reactivex.Maybe
 import io.reactivex.MaybeEmitter
@@ -19,12 +19,15 @@ class LocationProviderImpl(activity: Activity) : LocationProvider {
         try {
             provider.lastLocation.apply {
                 addOnSuccessListener { location ->
-
-                    if (location != null) emitter.onSuccess(location)
-                    else Toast.makeText(activity, "Ошибка при определении координат", Toast.LENGTH_SHORT)
+                    if (location != null) {
+                        emitter.onSuccess(location)
+                    }
                     emitter.onComplete()
                 }
-                addOnFailureListener { emitter.onError(it) }
+                addOnFailureListener {
+                    it.printStackTrace()
+                    emitter.onError(it)
+                }
             }
         } catch (e: Exception) {
             emitter.onError(e)
@@ -34,7 +37,6 @@ class LocationProviderImpl(activity: Activity) : LocationProvider {
     private class UpdateLocationMaybeSubscribe(
         private val provider: FusedLocationProviderClient
     ) : MaybeOnSubscribe<Location> {
-
         private val locationGPSRequest = LocationRequest.create().apply {
             numUpdates = 1
             interval = 10000
@@ -80,6 +82,8 @@ class LocationProviderImpl(activity: Activity) : LocationProvider {
                         )
                     else
                         Maybe.create(UpdateLocationMaybeSubscribe(provider))
+
                 })
+
     }
 }

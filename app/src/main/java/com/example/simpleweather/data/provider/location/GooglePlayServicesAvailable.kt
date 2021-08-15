@@ -18,10 +18,8 @@ class GooglePlayServicesAvailable constructor(private val context: Context) {
 
     private val api = GoogleApiAvailability.getInstance()
 
-    fun isAvailable(): Boolean =
-        api.isGooglePlayServicesAvailable(context) == ConnectionResult.SUCCESS
-
     fun isAvailableShowDialog(activity: Activity): Result {
+        api.makeGooglePlayServicesAvailable(activity)
         val code = api.isGooglePlayServicesAvailable(context)
         if (code == ConnectionResult.SUCCESS) return Result.True
         if (api.isUserResolvableError(code)) return Result.FalseDialog(
