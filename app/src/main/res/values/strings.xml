@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SimpleWeather</string>
+    <string name="hello_my_first_android_app">0</string>
+    <string name="no_connect_text">Нет подключения к интернету</string>
+    <string name="metric_prefix">\u2103</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="wind_metric_prefix">м/с</string>
+    <string name="feels_like">Ощущается</string>
+    <string name="pressure">Давление</string>
+    <string name="humidity">Влажность</string>
+    <string name="location_error">Please Turn on Your device Location</string>
+    <string name="need_geoloc">Предоставьте разрешение текущего местоположения</string>
+    <string name="refresh">Обновить</string>
+</resources>
