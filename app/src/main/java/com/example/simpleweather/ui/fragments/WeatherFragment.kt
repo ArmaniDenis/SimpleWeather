@@ -78,7 +78,7 @@ class WeatherFragment : Fragment() {
             adapter.addWeatherAttr(
                 WeatherAttribute(
                     R.string.pressure,
-                    currWeathResp.mainResponse?.pressure?.toString()
+                    currWeathResp.mainResponse?.pressure?.toString() + "mmHg"
                 )
             )
             adapter.addWeatherAttr(
