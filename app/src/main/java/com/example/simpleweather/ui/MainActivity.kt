@@ -3,7 +3,6 @@ package com.example.simpleweather.ui
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -17,6 +16,7 @@ import com.example.simpleweather.data.provider.location.LocationProviderImpl
 import com.example.simpleweather.databinding.ActivityMainBinding
 import com.example.simpleweather.ui.fragments.WeatherViewModel
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
@@ -88,12 +88,11 @@ class MainActivity : AppCompatActivity() {
     private fun setTimer() {
         disposable = Observable.interval(10, TimeUnit.MINUTES)
             .timeInterval()
-            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 provideInitWeather()
             }
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -110,7 +109,6 @@ class MainActivity : AppCompatActivity() {
         realm.close()
         disposable?.dispose()
     }
-
 
 
 }
