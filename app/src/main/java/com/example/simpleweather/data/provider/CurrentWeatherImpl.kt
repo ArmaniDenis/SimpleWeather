@@ -4,7 +4,6 @@ package com.example.simpleweather.data.provider
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import com.example.simpleweather.R
 import com.example.simpleweather.data.db.CurrentWeatherResponse
@@ -95,7 +94,7 @@ class CurrentWeatherImpl(
             }
         }
     }
-    //Не работает, если не залогинен в гугл сервисах
+
     private fun getLocation(
         context: Context
     ) {
@@ -113,7 +112,9 @@ class CurrentWeatherImpl(
                 it.printStackTrace()
             })
 
+
     }
+
     //unsafe-safe Client for testing on virtual device
     companion object {
         operator fun invoke(connectivityInterceptor: ConnectivityInterceptor): OpenWeatherApiService {
